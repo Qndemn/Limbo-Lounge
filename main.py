@@ -78,6 +78,8 @@ def start():
 
 def chapter_1():
     global money, drunkenness, charm
+    bar = False
+    search = False
     time.sleep(2)
     slow_print("\n\n-==== WELCOME TO TSO ====-")
     slow_print("\nA game by: Qndemn")
@@ -106,26 +108,31 @@ def chapter_1():
     time.sleep(2)
     choice = input("\n\nHere are your options: \n1. Go to the counter \n2. Talk with others \n3. Search the floor \n1, 2 or 3? ")
     if choice == "1":
-        slow_print("\n*Hey pal.*")
-        slow_print("\n*You seem new. I know just what you need...*")
-        time.sleep(2)
-        slow_print("\n*The TERMINAL JOLT!*")
-        slow_print("\n*Might wake you up a bit.*")
-        slow_print("\n*On the house.*")
-        choice = input("\nAccept the drink? y/n ").strip().lower()
-        if choice in ["y", "yes"]:
-            slow_print("\nYou take a sip of the drink.")
-            slow_print("\nThe taste starts with a metallic, coppery zing.")
-            slow_print("\nThen, a deep, syrupy bitterness similar to over-extracted espresso washes over your palate.")
-            slow_print("\nIt leaves you off with a jolt of peppermint and blue rasberry, which adds a nice kick to the drink.")
-            slow_print("\nDrunkenness +20")
-            slow_print("\nYour vision swims. The neon lights of the bar blur together, creating a kaleidoscope of colors that dance before your eyes.")
-            drunkenness += 20
-            charm += 5
-            slow_print("\nCharm +5")
-        if choice in ["n", "no"]:
-            slow_print("\n*Not a drinker, eh?*")
-            slow_print("\n*Well, you ain't gonna last long here with that additude, kid.*")
-            slow_print("\n*Your gonna be here a while, might as well enjoy it.*")
+        if bar:
+          slow_print("\n*Hey pal.*")
+          slow_print("\n*You seem new. I know just what you need...*")
+          time.sleep(2)
+          slow_print("\n*The TERMINAL JOLT!*")
+          slow_print("\n*Might wake you up a bit.*")
+          slow_print("\n*On the house.*")
+          choice = input("\nAccept the drink? y/n ").strip().lower()
+          if choice in ["y", "yes"]:
+              slow_print("\nYou take a sip of the drink.")
+              slow_print("\nThe taste starts with a metallic, coppery zing.")
+              slow_print("\nThen, a deep, syrupy bitterness similar to over-extracted espresso washes over your palate.")
+              slow_print("\nIt leaves you off with a jolt of peppermint and blue rasberry, which adds a nice kick to the drink.")
+              slow_print("\nDrunkenness +20")
+              slow_print("\nYour vision swims. The neon lights of the bar blur together, creating a kaleidoscope of colors that dance before your eyes.")
+              drunkenness += 20
+              charm += 5
+              slow_print("\nCharm +5")
+          if choice in ["n", "no"]:
+              slow_print("\n*Not a drinker, eh?*")
+              slow_print("\n*Well, you ain't gonna last long here with that additude, kid.*")
+              slow_print("\n*Your gonna be here a while, might as well enjoy it.*")
+        else:
+            slow_print("\n*Back so soon?*")
+            slow_print("\n*You want a drink?*")
+            slow_print("\n*Here's the options, pal.* \n1. The Limbo Tonic - A silver colour similar to liquid chrome, with a bubbly, fizzing sensation. A sharp, citrusy flavor with a strange metallic aftertaste. \nCost: $25 \n\n2. Shadow-Oak Stout - Colour: deep, pitch black with a think tan foam that never goes away. It feels syrupy and full-bodied, makes you feel 'heavy' inside. Tastes smokey and earthy, like burnt caramel and wet forest soil after a rainstorm. \nCost: $20 \n\n3. Ether Absinthe - Colour: A neon violet that glows in the bar's lights. It is oily and slick, covering the throat with a cooling film. Tastes like an intense Anis mixed with a bittersweet herbal punch and a hint of lavender. \nCost: $30")
 
 chapter_select()
