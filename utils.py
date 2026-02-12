@@ -6,3 +6,9 @@ def slow_print(text, delay=0.07):
         sys.stdout.flush()
         time.sleep(delay)
     print()
+sanity = 100
+money = 350
+drunkenness = 0
+charm = 50
+bar = True
+

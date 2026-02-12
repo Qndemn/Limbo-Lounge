@@ -2,9 +2,12 @@ import time
 import random
 import sys
 from utils import slow_print
-from bar import bars
-from characters import dating, training
-from chapters import chapter_select, start, chapter_1
+from bar import bars, drink
+from utils import sanity, money, drunkenness, charm
+from characters import dating, relationships
+from drinks import ALL_DRINKS, comments
+from combat import training
+
 
 sanity = 100
 money = 350
