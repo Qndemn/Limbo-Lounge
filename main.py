@@ -6,7 +6,9 @@ sanity = 100
 money = 350
 drunkenness = 0
 charm = 50
+bar = True
 
+drink = "nothing"
 relationships = {"Vexer": 0, "Jackson Voe": 0, "Rsot": 0, "ZiZ": 0} 
 
 ALL_DRINKS = [
@@ -41,7 +43,11 @@ comments = [
     "Ah, the {drink}! A classic. It's the only thing that tastes 'right' in this place.",
     "The {drink}? Bold choice. Most people can't handle the kick.",
     "The {drink} is a favorite around here. Keeps the quiet from getting too loud.",
-    "The {drink}. Good pick. It reminds me of a place I used to know."
+    "The {drink}. Good pick. It reminds me of a place I used to know.",
+    "You can't go wrong with a {drink}. It's got character, just like this bar.",
+    "The {drink}? Now that's a drink with a story.",
+    "Ah, the {drink}. It's got a way of growing on you after a while.",
+    "The {drink} is a solid choice. Helps you forget where you are for a bit.",
 ]
 
 def slow_print(text, delay=0.07):
@@ -56,7 +62,7 @@ def dating():
     upgrade = 0.1 + charm / 100
     slow_print("\n\n[-----===== BAR TALK =====-----]")
     slow_print("\nWho do you want to talk to? ")
-    slow_print(f"\n1. Vexer {relationships["Vexer"]} \n2. Jackson Voe {relationships["Jackson Voe"]} \n3. Rsot {relationships["Rsot"]} \n4. ZiZ {relationships["ZiZ"]}")
+    slow_print(f"\n1. Vexer | Relationship: {relationships['Vexer']} \n2. Jackson Voe | Relationship: {relationships['Jackson Voe']} \n3. Rsot | Relationship: {relationships['Rsot']} \n4. ZiZ | Relationship: {relationships['ZiZ']}")
     choice = input("\n1, 2, 3 or 4? ")
     if choice == "1":
         slow_print("\nYou approach Vexer.")
@@ -65,55 +71,114 @@ def dating():
           if random.random() < upgrade:
             slow_print("\n//Hmph. You're a good guy. Hell, not like you're anything special.\\")
             relationships["Vexer"] += 5
-        else:
+          else:
             slow_print("\n//...Buzz off, kid. Ain't nobody have time for greens like you.\\")
-    elif relationships["Vexer"] == 5:
-        if random.random() < upgrade:
-                slow_print("\n//Pal, you seem nice. Keep your head low, and you might learn to be tough.\\")
-                relationships["Vexer"] += 10
-        else:
-                slow_print(f"\n//...Maybe later, pal. I've got a Limbo Tonic with my name on it.\\")
-    elif relationships["Vexer"] == 15:
-        slow_print("\n//Hey, you've met Avice, huh? Shame. Took some money, eh? Ah, I've gotcha covered.\\")
-        slow_print("\nVexer gives you $20.")
-        money += 20
-        relationships["Vexer"] += 10
-    elif relationships["Vexer"] == 25:
-            slow_print("\n//Ain't you just a little ray of sunshine? Not many folks 'round here want to be too friendly.\\")
-            slow_print("\n//Ha! Ya know, how about we grab a drink together? My treat.\\")
-            drink_choice = input("\nAccept the drink? y/n ").strip().lower()
-            if drink_choice in ["y", "yes"]:
-                slow_print("\nYou and Vexer share a drink. You feel a little closer to him.")
-                relationships["Vexer"] += 15
-                charm += 10
-                slow_print("\nRelationship with Vexer +15 | Charm +10")
-            else:
-                slow_print("\n//Ah... Not your favorite, huh? I respect that.\\")
-                relationships["Vexer"] += 5
-                charm += 5
-                slow_print("\nRelationship with Vexer +5 | Charm +5")
-    elif relationships["Vexer"] >= 40:
-            slow_print("\n//Kid, you need to learn to fight if you want to last a second here.\\")
-            slow_print("//...How about training? Maybe sometime later...\\")
-            slow_print("\nVexer offers to train you in combat. Do you accept? y/n ")
-            choice = input().strip().lower()
-            if choice in ["y", "yes"]:
-                slow_print("\nYou agree to train on a later date.")
-                relationships["Vexer"] += 20
-                charm += 10
-                slow_print("\nRelationship with Vexer +20 | Charm +10")
-            else:
-                slow_print("\n//Ah... Not your thing, huh? I get it.\\")
-                relationships["Vexer"] += 10
-                charm += 5
-                slow_print("\nRelationship with Vexer +10 | Charm +5")
-    elif relationships["Vexer"] >= 50:
-            slow_print("\nThis is nice, ain't it? Been a while since I've had someone to talk to.\\")
-            relationships["Vexer"] = 100
-    elif relationships["Vexer"] == 100:
-            slow_print("\n//Hey, pal. I know this place can be rough, but I'm glad we got to know each other.\\")
-            slow_print("\n//If you ever need anything, just ask. I'll have your back.\\")
+        elif relationships["Vexer"] == 5:
+          if random.random() < upgrade:
+              slow_print("\n//Pal, you seem nice. Keep your head low, and you might learn to be tough.\\")
+              relationships["Vexer"] += 10
+          else:
+              slow_print(f"\n//...Maybe later, pal. I've got a Limbo Tonic with my name on it.\\")
+        elif relationships["Vexer"] == 15:
+          slow_print("\n//Hey, you've met Avice, huh? Shame. Took some money, eh? Ah, I've gotcha covered.\\")
+          slow_print("\nVexer gives you $20.")
+          money += 20
+          relationships["Vexer"] += 10
+        elif relationships["Vexer"] == 25:
+              slow_print("\n//Ain't you just a little ray of sunshine? Not many folks 'round here want to be too friendly.\\")
+              slow_print("\n//Ha! Ya know, how about we grab a drink together? My treat.\\")
+              drink_choice = input("\nAccept the drink? y/n ").strip().lower()
+              if drink_choice in ["y", "yes"]:
+                  slow_print("\nYou and Vexer share a drink. You feel a little closer to him.")
+                  relationships["Vexer"] += 15
+                  slow_print("\nRelationship with Vexer +15")
+              else:
+                  slow_print("\n//Ah... Not your favorite, huh? I respect that.\\")
+                  relationships["Vexer"] += 15
+                  slow_print("\nRelationship with Vexer +15")
+        elif relationships["Vexer"] >= 40:
+              slow_print("\n//Kid, you need to learn to fight if you want to last a second here.\\")
+              slow_print("//...How about training? Maybe sometime later...\\")
+              slow_print("\nVexer offers to train you in combat. Do you accept? y/n ")
+              choice = input().strip().lower()
+              if choice in ["y", "yes"]:
+                  slow_print("\nYou agree to train on a later date.")
+                  relationships["Vexer"] += 10
+                  slow_print("\nRelationship with Vexer +20")
+              else:
+                  slow_print("\n//Ah... Not your thing, huh? I get it.\\")
+                  relationships["Vexer"] += 10
+                  slow_print("\nRelationship with Vexer +10")
+        elif relationships["Vexer"] >= 50:
+              slow_print("\nThis is nice, ain't it? Been a while since I've had someone to talk to.\\")
+              relationships["Vexer"] = 100
+        elif relationships["Vexer"] == 100:
+              slow_print("\n//Hey, pal. I know this place can be rough, but I'm glad we got to know each other.\\")
+              slow_print("\n//If you ever need anything, just ask. I'll have your back.\\")
+              choice = input("\n//About that training session... Ready to start? y/n ").strip().lower()
+              if choice in ["y", "yes"]:
+                  training()
+              else:
+                  slow_print("\n//No rush, pal. Whenever you're ready.\\")
 
+def training():
+    global sanity, charm, money
+    mercy_points = 0
+    drinks = True
+    charm = True
+    compliment = True
+    vexer_sanity = 100
+    slow_print("\n\n[-----===== TRAINING =====-----]")
+    slow_print("\nYou take up Vexer's offer to train you in combat.")
+    time.sleep(2)
+    slow_print(f"\nVexer's sanity: {vexer_sanity} | Your sanity: {sanity}")
+    while sanity > 0 and vexer_sanity > 0:
+        slow_print("\n1. Fight \n2. Act \n3. Item \n4. Mercy")
+        choice = input("\nWhat will you do? 1, 2, 3 or 4? ")
+        if choice == "1":
+            damage = random.randint(10, 25)
+            for rounds in range(5):
+                print("BAM! ", end="")
+            vexer_sanity -= damage
+            slow_print(f"\nYou strike Vexer, dealing {damage} damage!")
+            slow_print("//Woah, kid. Quite the punch you've got there.\\")
+        elif choice == "2":
+            slow_print("\nChoose: \n1. Offer a drink \n2. Compliment \n3. Charm")
+            act_choice = input("\n1, 2 or 3? ")
+            if act_choice == "1":
+                slow_print(f"\nYou offer Vexer a sip of {drink}")
+                if drink == "The Limbo Tonic":
+                    if drinks:
+                      slow_print("\n//How'd you know that's my favorite? Thanks, kid.\\")
+                      drinks = False
+                      mercy_points += 1
+                    else:
+                      slow_print("\n//Oof. I shouldn't drink too much.\\")
+                else:
+                    slow_print("\n//Thanks, kid. But this ain't really my favorite.\\")
+            elif act_choice == "2":
+                if compliment:
+                  slow_print("\nYou compliment Vexer on his fighting skills.")
+                  slow_print("//Heh. You're not so bad yourself, kid.\\")
+                  compliment = False
+                else:
+                  slow_print("\n//You've already complimented me, kid.\\")
+            elif act_choice == "3":
+                if charm:
+                  slow_print("\nYou try to charm Vexer.")
+                  if random.random() < (0.1 + charm / 100):
+                      slow_print("//...Heh. Charm ain't gonna work on me, pal. Good try though.\\")
+                      mercy_points += 1
+                  else:
+                      slow_print("//Eh. Trying to charm me, eh? Ha!\\")
+                else:
+                    slow_print("\n//You've charmed me plenty, pal.\\")
+            elif act_choice == "4":
+                if mercy_points >= 3:
+                    slow_print("\n//So, you chose to spare me. Kid, you're too good for this place.\\")
+                    vexer_sanity = 0
+                else:
+                    slow_print("\n//We're supposed to be training, pal. Let's keep it up.\\")
 def chapter_select():
     slow_print("\n\n[-----===== CHAPTER SELECT =====-----]")
     slow_print("\n1. Introduction")
@@ -125,6 +190,46 @@ def chapter_select():
     elif choice == "2":
         chapter_1()
 
+def bars():
+    global drunkenness, charm, money, bar, drink
+    if bar:
+        slow_print("\n*Hey pal.*")
+        slow_print("\n*You seem new. I know just what you need...*")
+        time.sleep(2)
+        slow_print("\n*The TERMINAL JOLT!*\n*Might wake you up a bit.*\n*On the house.*")
+        drink_choice = input("\nAccept the drink? y/n ").strip().lower()
+        if drink_choice in ["y", "yes"]:
+          slow_print("\nYou take a sip of the drink. \nThe taste starts with a metallic, coppery zing.")
+          slow_print("Then, a deep, syrupy bitterness similar to over-extracted espresso washes over your palate.")
+          slow_print("It leaves you off with a jolt of peppermint and blue rasberry.")
+          drunkenness += 20
+          charm += 5
+          slow_print("\nDrunkenness +20 | Charm +5")
+          bar = False # Next time they visit, they get the menu
+        else:
+            slow_print("\n*Not a drinker, eh? Well, you ain't gonna last long here with that attitude, kid.*")
+            bar = False
+    else:
+        slow_print("\n*Back so soon? You want a drink?*")
+        daily_menu = random.sample(ALL_DRINKS, 3)
+        for i, d in enumerate(daily_menu, 1):
+            slow_print(f"{i}. {d['name']} - ${d['cost']}")       
+        slow_print(f"\nDrunkeness: {drunkenness} | Charm: {charm} | Money: ${money}")
+        drink_choice = input("\nWhich drink? (1, 2, 3 or 'n'): ")
+        if drink_choice in ["1", "2", "3"]:
+            selected = daily_menu[int(drink_choice)-1]
+            if money >= selected['cost']:
+                drink = selected['name']
+                money -= selected['cost']
+                drunkenness += selected['drunk']
+                charm += selected['charm']
+                slow_print(f"\nMoney - {selected['cost']} (Balance: ${money})")
+                slow_print(f"\nDrunkenness +{selected['drunk']} | Charm +{selected['charm']}")
+                slow_print(f"\n{selected['sip']}")
+                comment = random.choice(comments).format(drink=selected['name'])
+                slow_print(f"\nA patron nods: '{comment}'")
+            else:
+                slow_print("\n*The bartender sighs.* 'You're short on cash.'")
 def start():
     global sanity
     slow_print("...where am I?")
@@ -196,45 +301,11 @@ def chapter_1():
     time.sleep(2)
     
     while True:
+        slow_print(f"\nMoney: ${money} | Drunkenness: {drunkenness} | Charm: {charm}")
         choice = input("\n\nHere are your options: \n1. Go to the counter \n2. Talk with others \n3. Search the floor \n4. Exit Game\n> ")
         
         if choice == "1":
-            if bar:
-                slow_print("\n*Hey pal.*")
-                slow_print("\n*You seem new. I know just what you need...*")
-                time.sleep(2)
-                slow_print("\n*The TERMINAL JOLT!*\n*Might wake you up a bit.*\n*On the house.*")
-                drink_choice = input("\nAccept the drink? y/n ").strip().lower()
-                if drink_choice in ["y", "yes"]:
-                    slow_print("\nYou take a sip of the drink. \nThe taste starts with a metallic, coppery zing.")
-                    slow_print("Then, a deep, syrupy bitterness similar to over-extracted espresso washes over your palate.")
-                    slow_print("It leaves you off with a jolt of peppermint and blue rasberry.")
-                    drunkenness += 20
-                    charm += 5
-                    slow_print("\nDrunkenness +20 | Charm +5")
-                    bar = False # Next time they visit, they get the menu
-                else:
-                    slow_print("\n*Not a drinker, eh? Well, you ain't gonna last long here with that attitude, kid.*")
-                    bar = False
-            else:
-                slow_print("\n*Back so soon? You want a drink?*")
-                daily_menu = random.sample(ALL_DRINKS, 3)
-                for i, d in enumerate(daily_menu, 1):
-                    slow_print(f"{i}. {d['name']} - ${d['cost']}")
-                
-                drink_choice = input("\nWhich drink? (1, 2, 3 or 'n'): ")
-                if drink_choice in ["1", "2", "3"]:
-                    selected = daily_menu[int(drink_choice)-1]
-                    if money >= selected['cost']:
-                        money -= selected['cost']
-                        drunkenness += selected['drunk']
-                        charm += selected['charm']
-                        slow_print(f"\n{selected['sip']}")
-                        comment = random.choice(comments).format(drink=selected['name'])
-                        slow_print(f"\nA patron nods: '{comment}'")
-                    else:
-                        slow_print("\n*The bartender sighs.* 'You're short on cash.'")
-
+          bars()
         elif choice == "2":
             dating()
         elif choice == "3":
