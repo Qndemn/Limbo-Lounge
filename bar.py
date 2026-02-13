@@ -1,8 +1,9 @@
 import random
 import time
-from utils import slow_print
+from utils import slow_print, sanity, money, drunkenness, charm
 from drinks import ALL_DRINKS, comments
 drink = "nothing"
+bar = True
 def bars():
     global drunkenness, charm, money, bar, drink
     if bar:

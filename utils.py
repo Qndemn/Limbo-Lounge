@@ -1,6 +1,6 @@
 import time
 import sys
-def slow_print(text, delay=0.07):
+def slow_print(text, delay=0.04):
     for character in text:
         sys.stdout.write(character)
         sys.stdout.flush()

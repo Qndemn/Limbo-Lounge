@@ -2,12 +2,11 @@ import time
 import random
 import sys
 from utils import slow_print
-from bar import bars, drink
+import bar
 from utils import sanity, money, drunkenness, charm
-from characters import dating, relationships
+import characters
 from drinks import ALL_DRINKS, comments
 from combat import training
-
 
 sanity = 100
 money = 350
@@ -66,12 +65,10 @@ def start():
     slow_print("... How do I leave?")
     time.sleep(1)
     slow_print("< !BAD NEWS, KID! >")
+    time.sleep(2)
 
 def chapter_1():
     global money, drunkenness, charm
-    bar = True # Set to True so first interaction uses the "New pal" script
-    
-    time.sleep(2)
     slow_print("\n\n-==== WELCOME TO TSO ====-")
     slow_print("\nA game by Qndemn")
     slow_print("\nChapter 1: Welcome to the TSO")
@@ -103,16 +100,18 @@ def chapter_1():
         if choice == "1":
           bars()
         elif choice == "2":
-            dating()
+            characters.dating()
         elif choice == "3":
-            if random.random() > 0.8:
-                found = random.randint(5, 10)
-                money += found
-                slow_print(f"\nYou found ${found} on the floor!")
+            if characters.found_rsot == "active":
+                characters.found_rsot = "found"
+                slow_print("\nYou found Rsot's ammo.")
             else:
+              if random.random() > 0.8:
+                  found = random.randint(5, 10)
+                  money += found
+                  slow_print(f"\nYou found ${found} on the floor!")
+              else:
                 slow_print("\nNothing but dust.")
 
         elif choice == "4":
             break
-
-chapter_select()
