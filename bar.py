@@ -45,4 +45,4 @@ def bars():
                 utils.slow_print(f"\nA patron nods: '{comment}'")
                 drink_heal = True
             else:
-                utils.slow_print("\n*The bartender sighs.* 'You're short on cash.'")
+                utils.slow_print("\n*sigh... That's not enough cash, kid. Maybe next time.*")

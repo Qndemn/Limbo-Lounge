@@ -19,6 +19,8 @@ def chapter_select():
         chapter_1()
     elif choice == "2":
         chapter_1()
+    elif choice == "99":
+        magical_fairyland()
 
 def start():
     global sanity
@@ -100,6 +102,7 @@ def chapter_1():
             if characters.found_resotte == "active":
                 characters.found_resotte = "found"
                 utils.slow_print("\nYou found Resotte's ammo.")
+                utils.integrity_check()
             else:
               if random.random() > 0.8:
                   found = random.randint(5, 10)
@@ -110,3 +113,27 @@ def chapter_1():
 
         elif choice == "4":
             break
+def magical_fairyland():
+    utils.slow_print("\n\n[-----===== MAGICAL FAIRYLAND =====-----]")
+    utils.slow_print("\nThis is a dev testing place, for new characters, and... jokes")
+    utils.slow_print("\n*Am ThE hEaVy FrOm TeAm FoRtReSs 2*")
+    utils.slow_print("\n*Am BiG sTrOnG rUsSiAn MaN*")
+    utils.slow_print("\n\nℚ Okay, enough of the heavy from tf2 being the heavy from tf2. ℚ")
+    utils.slow_print("\n\nℚ Let's give a big hand to Vous! ℚ")
+    utils.slow_print("\n\n\n\n## hey, buddy ol' friend ol' pal! ##")
+    utils.slow_print("\n## listen... I'm in a bit of a tight spot... ##")
+    utils.slow_print("\n## couldja lend me some cash? ##")
+    choice = input("\n\nLend him some cash? y/n ")
+    if choice in ["y", "yes"]:
+        utils.slow_print("\n## another sucker. sayonara, dumbass! ##")
+        utils.money -= 100
+        utils.slow_print(f"\nMoney - 100 (Balance: ${utils.money})")
+    elif choice in ["n", "no"]:
+        utils.slow_print("\n## ugh. where do these smart people keep coming from? ##")
+    else:
+        utils.slow_print("\n## ... ##")
+    time.sleep(2)
+    utils.slow_print("\n\nℚ More jocks (or jokes, as you moderners say): ℚ")
+    utils.slow_print("\n\n//Watchout!TheScout'soutandaboutRunningaroundBringingbonksrightdowntoyourscalp(Bonk)Doyouevenknowwhoyou'retalkingtohere?I'mastreakofgreasedlightningKeepfightingforyearsI'mastunner,numberonerun-and-gunnerMybeatsbringtheheat'causeI'masweetdoublejumperYourfinger'sonthetriggerbutbeforeYougettopullitI'lltakeasipoffizzandI'llgowhizzingpastyourbulletsIamonitlikearocketona coursetofreakin'poundyaCallmesupersonic'causeI'mRunningringsaroundyaI'madabhandwithasandmanI'mthebaddestinthebadlandsI'maspeedfreakonakillstreakSeeablurthenit'sbangbang\\")
+    time.sleep(5)
+    utils.slow_print("ℚ 5 second should be enough time to process all that information, right? ℚ")
