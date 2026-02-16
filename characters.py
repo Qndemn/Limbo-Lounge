@@ -4,7 +4,7 @@ import time
 import bar
 from combat import training
 found_resotte = "none"
-relationships = {"Vexer": 0, "Jackson Voe": 100, "Resotte": 0, "Vous": 0}
+relationships = {"Vexer": 0, "Jackson Voe": 0, "Resotte": 0, "Vous": 0}
 vous_interact = True
 sear_interact = False
 def dating():
