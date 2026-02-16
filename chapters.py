@@ -24,7 +24,8 @@ def chapter_select():
 
 def start():
     global sanity
-    utils.slow_print("...where am I?")
+    time.sleep(2)
+    utils.slow_print("\n...where am I?")
     time.sleep(2)
     utils.slow_print("\n...")
     time.sleep(2)
@@ -42,8 +43,8 @@ def start():
     time.sleep(1)
     utils.slow_print("\n< !WELL? RESPOND! >")
     utils.slow_print("\nAsk a question?")
-    choice = input("y/n ")
-    if choice == "y":
+    choice = input("y/n ").strip().lower()
+    if choice in['y', 'yes']:
         while utils.sanity > 0:
           utils.slow_print("What do you want to ask? \n1. Who are you? \n2. Where am I? \n3. Am I... Dead? \n4. Exit")
           question = input("1, 2, 3 or 4? ")
@@ -56,8 +57,10 @@ def start():
               utils.slow_print("< !! >\n< !...! >\n< !...Yes! >\n< !YES, YOU ARE.! >")
           if question == "4":
               break
-    if choice == "n":
+    elif choice in['n', 'no']:
         utils.slow_print("< !NOT A TALKER, EH? >")
+    else:
+        utils.slow_print("< !SORRY, WHAT? I DIDN'T QUITE CATCH THAT! >")
     utils.slow_print("\n...")
     utils.slow_print("... How do I leave?")
     time.sleep(1)
@@ -74,8 +77,8 @@ def chapter_1():
     utils.slow_print("\n< !T.S.O STANDS FOR THE STAY-OVER! >")
     time.sleep(1)
     utils.slow_print("\nAsk why?")
-    choice = input("y/n ")
-    if choice == "y":
+    choice = input("y/n ").strip().lower()
+    if choice in['y', 'yes']:
         utils.slow_print("\n< !BECAUSE YOU AIN'T LEAVING ANYTIME SOON! >")
     else:
         utils.slow_print("\n< ... >")

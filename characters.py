@@ -4,12 +4,19 @@ import time
 import bar
 from combat import training
 found_resotte = "none"
-relationships = {"Vexer": 100, "Jackson Voe": 0, "Resotte": 0, "ZiZ": 0} 
+relationships = {"Vexer": 0, "Jackson Voe": 100, "Resotte": 0, "Vous": 0}
+vous_interact = True
+sear_interact = False
 def dating():
+    global vous_interact, sear_interact
     upgrade = 0.1 + utils.charm / 100
     utils.slow_print("\n\n[-----===== BAR TALK =====-----]")
     utils.slow_print("\nWho do you want to talk to? ")
-    utils.slow_print(f"\n1. Vexer | Relationship: {relationships['Vexer']} \n2. Jackson Voe | Relationship: {relationships['Jackson Voe']} \n3. Resotte | Relationship: {relationships['Resotte']} \n4. ZiZ | Relationship: {relationships['ZiZ']}")
+    utils.slow_print(f"\n1. Vexer | Relationship: {relationships['Vexer']} \n2. Jackson Voe | Relationship: {relationships['Jackson Voe']} \n3. Resotte | Relationship: {relationships['Resotte']}")
+    if vous_interact:
+        utils.slow_print(f"4. Vous | Relationship: {relationships['Vous']}")
+    else:
+        utils.slow_print("4. Sear | Relationship: #")
     choice = input("\n1, 2, 3 or 4? ")
     if choice == "1":
         utils.slow_print("\nYou approach Vexer.")
@@ -33,7 +40,7 @@ def dating():
           relationships["Vexer"] += 10
         elif relationships["Vexer"] == 25:
               utils.slow_print("\n//Ain't you just a little ray of sunshine? Not many folks 'round here want to be too friendly.\\")
-              utils.slow_print("\n//Ha! Ya know, how about we grab a drink together? My treat.\\")
+              utils.slow_print("\n//Ha! Ya know, how about we grab a Limbo Tonic together? My treat.\\")
               drink_choice = input("\nAccept the drink? y/n ").strip().lower()
               if drink_choice in ["y", "yes"]:
                   utils.slow_print("\nYou and Vexer share a drink. You feel a little closer to him.")
@@ -73,6 +80,7 @@ def dating():
         utils.slow_print("\nYou approach Jackson Voe.")
         if relationships["Jackson Voe"] == 0:
             if bar.drink == "Copper-Line Lager":
+                utils.slow_print("You offer him your Copper-Line Lager.")
                 utils.slow_print("\n''Hm? Ah. Good stuff. Now get lost.''")
                 relationships["Jackson Voe"] += 5
             else:
@@ -89,6 +97,8 @@ def dating():
             relationships["Jackson Voe"] = 100
             utils.slow_print("\nRelationship with Jackson Voe set to 100")
             utils.slow_print("\n''There. Now leave me be.''")
+        else:
+            utils.slow_print("\n ~ℂ 𝕆 𝕃 𝔻 𝕊 𝕀 𝕃 𝔼 ℕ ℂ 𝔼~", delay=0.3)
     elif choice == "3":
         utils.slow_print("\nYou approach Resotte.")
         if relationships["Resotte"] == 0:
@@ -113,3 +123,41 @@ def dating():
                 relationships["Resotte"] = 100
             else:
                 utils.slow_print("\n|Any luck?|")
+    elif choice == "4":
+        if vous_interact:
+          vous_interact = False
+          utils.slow_print("\n## hey, buddy ol' friend ol' pal! ##")
+          utils.slow_print("\n## listen... I'm in a bit of a tight spot... ##")
+          utils.slow_print("\n## couldja lend me some cash? ##")
+          choice = input("\n\nLend him some cash? y/n ").strip().lower()
+          if choice in ["y", "yes"]:
+            utils.slow_print("\n## another sucker. sayonara, dumbass! ##")
+            utils.money -= 100
+            utils.slow_print(f"\nMoney - 100 (Balance: ${utils.money})")
+          elif choice in ["n", "no"]:
+            utils.slow_print("\n## ugh. where do these smart people keep coming from? ##")
+          else:
+            utils.slow_print("\n## ... ##")
+          sear_interact = True
+        else:
+            if sear_interact:
+              sear_interact = False
+              utils.slow_print("\n## uh-oh... well, bye! ##")
+              utils.slow_print("\n## don't stick around this guy too long, 'kay? ##")
+              time.sleep(3)
+              utils.slow_print("\n\n❖ Hello, child. I see you are adjusting well? Gut. ❖")
+              choice = input("Ask about Vous? y/n ").strip().lower()
+              if choice in ["y", "yes"]:
+                  utils.slow_print("\n❖ Ah. Vous, scampering away like always. No need for fear, he is nothing but a cowardly weasel. ❖")
+              else:
+                  utils.slow_print("❖ ... Ah. It seemed you were going to say something. I suppose not. ❖")
+              utils.slow_print("\n❖ That is not of import at this time. ❖")
+              utils.slow_print("\n❖ You appear to be finding your footing. Adjusting well, I take it. ❖")
+              choice = input("Are you adjusting? y/n ").strip().lower()
+              if choice in ["y", "yes"]:
+                  utils.slow_print("\n❖ Vollkommen. Ensure that it remains this way. Verstanden? ❖")
+              else:
+                  utils.slow_print("\n❖ You seem quite hesitant, child. If you have a question, ask. ❖")
+              utils.slow_print("\n\n❖ There is still much you do not understand. All in due time. ❖")
+            else:
+                utils.slow_print("❖ You have no need to speak with me now. Go, du idiotisches Kind. ❖")
