@@ -94,6 +94,13 @@ def chapter_1():
     time.sleep(2)
     
     while True:
+        if utils.drunkenness > 100:
+            utils.drunkennes = 0
+            utils.slow_print("\nYou drank too much.")
+            utils.slow_print("\n*Kid, take a rest. You've gone a bit too hard on the booze.*")
+            sanity -= 15
+        if utils.charm > 100:
+            utils.charm = 100
         utils.slow_print(f"\nMoney: ${utils.money} | Drunkenness: {utils.drunkenness} | Charm: {utils.charm}")
         choice = input("\n\nHere are your options: \n1. Go to the counter \n2. Talk with others \n3. Search the floor \n4. Exit Game\n> ")
         
