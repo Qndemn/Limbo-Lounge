@@ -63,9 +63,16 @@ def training():
                 else:
                     utils.slow_print("\n//You've charmed me plenty, pal.\\")
             elif act_choice == "4":
-                if mercy_points >= 3:
-                    utils.slow_print("\n//So, you chose to spare me. Kid, you're too good for this place.\\")
-                    vexer_sanity = 0
+                choice = input("\n1. Mercy\n2. Flee")
+                if choice == "1":
+                  if mercy_points >= 3:
+                      utils.slow_print("\n//So, you chose to spare me. Kid, you're too good for this place.\\")
+                      vexer_sanity = 0
+                  else:
+                      utils.slow_print("\n//Don't think you can get out of training THAT easy.\\")
+                elif choice == "2":
+                  utils.slow_print("\n//Hm? Okay, I get it. You want a break. You better come back to training!\\")
+                  break
                 else:
                     utils.slow_print("\n//We're supposed to be training, pal. Let's keep it up.\\")
             elif act_choice == "3":
